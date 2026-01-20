@@ -27,13 +27,12 @@ function initNavigation() {
     // Close menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        // Only close menu programmatically if it's an anchor link (internal navigation)
-        // For distinct pages, the new page load handles the "closing" (by resetting state)
-        if (href && href.includes('#') && href !== '#') {
+        // Allow default navigation to happen immediately
+        // Close menu with a small delay to not interrupt touch events
+        setTimeout(() => {
           menuToggle.classList.remove('active');
           navList.classList.remove('active');
-        }
+        }, 150);
       });
     });
 
