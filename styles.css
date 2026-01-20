@@ -1516,26 +1516,83 @@ img {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-list {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--color-white);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-xl);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  /* This fixes the menu not opening: now targets .nav-list.active directly */
+  .nav-list.active {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .menu-toggle {
     display: flex;
   }
 
-  .nav.active .nav-list {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+  /* Hide the header button on mobile to prevent overcrowding */
+  .header .btn {
+    display: none;
+  }
+
+  /* Ensure consistent Mobile Navigation background color for Dark Pages */
+  body[style*="background-color: var(--color-dark)"] .nav-list,
+  .nav-list {
     background: var(--color-ivory);
-    padding: var(--space-6);
-    border-bottom: 1px solid rgba(184, 149, 108, 0.1);
-    box-shadow: var(--shadow-lg);
+    /* Default light theme menu background */
+  }
+
+  /* Stats Grid Fix for Mobile */
+  .stats-grid,
+  .luxury-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .stat-card {
+    margin-bottom: var(--space-4);
+  }
+
+  /* WhatsApp Pill Mobile Optimization */
+  .whatsapp-pill {
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 16px;
+  }
+
+  .whatsapp-pill-text {
+    font-size: 0.8rem;
+  }
+
+  .whatsapp-pill-subtitle {
+    display: none;
+    /* Hide subtitle on mobile to save space */
+  }
+
+  /* Ours Page Spacing Fix */
+  .section {
+    padding: var(--space-12) 0;
   }
 
   .grid-2,
