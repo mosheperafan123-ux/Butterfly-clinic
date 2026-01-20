@@ -364,27 +364,47 @@ img {
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-4) var(--space-8);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   border-radius: var(--radius-sm);
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   cursor: pointer;
-  transition: var(--transition-base);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover::before {
+  opacity: 1;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-gold) 100%);
   color: var(--color-white);
   border-color: var(--color-secondary);
+  box-shadow: 0 4px 15px rgba(184, 149, 108, 0.3);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(184, 149, 108, 0.35);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(184, 149, 108, 0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -396,6 +416,8 @@ img {
 .btn-secondary:hover {
   background: var(--color-secondary);
   color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 149, 108, 0.3);
 }
 
 .btn-dark {
@@ -406,11 +428,19 @@ img {
 
 .btn-dark:hover {
   background: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn-lg {
-  padding: var(--space-4) var(--space-10);
-  font-size: var(--text-sm);
+  padding: var(--space-5) var(--space-12);
+  font-size: var(--text-base);
+  letter-spacing: 2px;
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
 }
 
 /* ===================================
@@ -781,13 +811,27 @@ img {
   font-size: clamp(2rem, 4vw, 2.75rem);
   margin-bottom: var(--space-4);
   font-weight: 500;
+  color: var(--color-white);
 }
 
 .section-subtitle {
   font-size: var(--text-lg);
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.9;
   font-weight: 300;
+}
+
+/* Override for light backgrounds */
+.bg-light .section-title,
+.bg-cream .section-title,
+.showcase-section .section-title {
+  color: var(--color-primary);
+}
+
+.bg-light .section-subtitle,
+.bg-cream .section-subtitle,
+.showcase-section .section-subtitle {
+  color: var(--color-text-light);
 }
 
 /* ===================================
@@ -1185,33 +1229,62 @@ img {
    =================================== */
 .cta-section {
   background: linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-primary) 100%);
-  padding: var(--space-20) 0;
+  padding: var(--space-24) 0;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: var(--gradient-gold);
+}
+
+.cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: var(--gradient-gold);
 }
 
 .cta-title {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   color: var(--color-white);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
   font-weight: 500;
 }
 
 .cta-text {
-  font-size: var(--text-lg);
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
-  margin: 0 auto var(--space-8);
+  font-size: var(--text-xl);
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
+  margin: 0 auto var(--space-10);
   font-weight: 300;
+  line-height: 1.8;
 }
 
 .cta-section .btn-primary {
   background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-gold) 100%);
   border-color: var(--color-secondary);
+  font-size: var(--text-base);
+  padding: var(--space-5) var(--space-12);
 }
 
 .cta-section .btn-secondary {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.6);
   color: var(--color-white);
+  font-size: var(--text-base);
+  padding: var(--space-5) var(--space-12);
 }
 
 .cta-section .btn-secondary:hover {
