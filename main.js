@@ -26,9 +26,14 @@ function initNavigation() {
 
     // Close menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navList.classList.remove('active');
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        // Only close menu programmatically if it's an anchor link (internal navigation)
+        // For distinct pages, the new page load handles the "closing" (by resetting state)
+        if (href && href.includes('#') && href !== '#') {
+          menuToggle.classList.remove('active');
+          navList.classList.remove('active');
+        }
       });
     });
 
